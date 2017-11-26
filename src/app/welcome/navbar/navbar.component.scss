@@ -1,0 +1,56 @@
+
+$break-small: 750px;
+$break-large: 1200px;
+
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+@media (min-width: 768px) {
+  .main-nav {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .navbar-nav {
+    margin-left: 40px;
+  }
+  .navbar-right {
+    margin-right: 20px;
+  }
+}
+
+.navbar{
+    .navbar-inverse{
+        margin-bottom: 0px;
+    }
+    .navbar-collapse {
+        text-align: center;
+    }
+    .nav-link{
+        font-size: 17px;
+    }
+    .navbar-toggle{
+        margin-right: 5px;
+    }
+    .navbar-toggle{
+      margin-right: 20px;
+    }
+    .navbar-brand{      
+         @include respond-to(handhelds) { margin-left: 5px; }
+         @include respond-to(medium-screens) { margin-left: 10px; }
+         @include respond-to(wide-screens) { margin-left: 40px; }
+    }
+}
+
+
+
+

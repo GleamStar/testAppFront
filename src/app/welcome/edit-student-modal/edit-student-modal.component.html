@@ -1,0 +1,39 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="close()" >&times;</button>
+      <h4 class="modal-title">Add new class</h4>
+    </div>
+    <form autocomplete="off" class="center-block auth-div" #addStudentForm="ngForm" (ngSubmit)="confirm(addStudentForm.value)" novalidate>
+      <div class="modal-body">
+        <fieldset>
+          <div class="form-group" [ngClass]="{'error':addStudentForm.form.get('name')?.invalid
+              &&(addStudentForm.form.get('name')?.touched || mouseoverLogin)}">
+            <label for="name">Student Name </label>
+            <input  id="name" type="text" [(ngModel)]="values.name" name="name" required class="form-control" >
+          </div>
+          <div class="form-group" [ngClass]="{'error':addStudentForm.form.get('surname')?.invalid
+              &&(addStudentForm.form.get('surname')?.touched || mouseoverLogin)}">
+            <label for="surname">Surname</label>
+            <input  id="surname" type="text" [(ngModel)]="values.surname" name="surname" required class="form-control" >
+          </div>
+          <div class="form-group" [ngClass]="{'error':addStudentForm.form.get('dto')?.invalid
+              &&(addStudentForm.form.get('dob')?.touched || mouseoverLogin)}">
+            <label for="dob">DOB</label>
+            <input id="dob" type="text" [(ngModel)]="values.dob"
+                   name="dob" (valueChanged)="setDateValue(addStudentForm, 'dob',$event)"
+                   ngui-datetime-picker required class="form-control">
+          </div>
+          <div class="form-group" [ngClass]="{'error':addStudentForm.form.get('gpa')?.invalid
+              &&(addStudentForm.form.get('gpa')?.touched || mouseoverLogin)}">
+            <label for="gpa">GPA</label>
+            <input  id="gpa" type="number" [(ngModel)]="values.gpa" name="gpa" required class="form-control" >
+          </div>
+          <div class="form-group" (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+            <button type="submit" class="btn btn-primary form-control" [disabled]="addStudentForm.invalid"> OK </button>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+

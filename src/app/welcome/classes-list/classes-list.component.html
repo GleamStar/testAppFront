@@ -1,0 +1,37 @@
+<div class="container">
+  <table  *ngIf="classes | async as c" class="table table-condensed">
+    <caption class="text-center">
+      Classes
+    </caption>
+    <thead>
+    <tr>
+      <th class="text-center">Class name</th>
+      <th class="text-center">Location </th>
+      <th class="text-center">Teacher</th>
+      <th class="text-center"></th>
+      <th class="text-center"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let class of c" (click)="choosenClass(class.classId)">
+      <td class="text-center">
+        {{class?.name}}
+      </td >
+      <td class="text-center">
+        {{class?.location}}
+      </td>
+      <td class="text-center">
+        {{class?.teacher}}
+      </td>
+      <td class="text-center">
+        <button (click)="edit(class)" class="btn-link">Edit</button>
+      </td>
+      <td class="text-center">
+        <button (click)="delete(class.classId)" class="btn-link">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button (click)="add()" class="btn btn-primary">Add</button>
+</div>
+

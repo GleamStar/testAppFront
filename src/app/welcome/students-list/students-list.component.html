@@ -1,0 +1,37 @@
+<div class="container">
+  <p>To see students list just click on class record</p>
+  <table  *ngIf="students | async as s" class="table table-condensed">
+    <caption class="text-center">
+      Student
+    </caption>
+    <thead>
+    <tr>
+      <th class="text-center">Student name</th>
+      <th class="text-center">Age </th>
+      <th class="text-center">GPA</th>
+      <th class="text-center"></th>
+      <th class="text-center"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of s" [ngClass]="setStyle(student?.gpa)">
+      <td class="text-center">
+        {{student?.name}} {{student?.surname}}
+      </td >
+      <td class="text-center">
+        {{getAge(student.dob) }}
+      </td>
+      <td class="text-center">
+        {{student?.gpa}}
+      </td>
+      <td class="text-center">
+        <button (click)="edit(student)" class="btn-link">Edit</button>
+      </td>
+      <td class="text-center">
+        <button (click)="delete(student.studentId)" class="btn-link">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button (click)="add()" class="btn btn-primary">Add</button>
+</div>
